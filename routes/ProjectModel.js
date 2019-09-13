@@ -10,15 +10,17 @@ module.exports = {
 }
 
 function getResourceList() {
-
+    return db('resources')
 }
 
 function getProjectList() {
-
+    return db('projects')
 }
 
 function getTaskList() {
-
+    return db('tasks')
+        .join('projects', 'tasks.project_id', '=', 'projects.id')
+        .select('tasks.id', 'tasks.description', 'tasks.completed', 'tasks.notes', 'projects.project_name')
 }
 
 function addResource(resource) {
