@@ -16,7 +16,9 @@ router.get('/', (req,res) => {
 })
 
 router.post('/', (req, res) => {
-    ProjectDb.addProject()
+    const newProject = req.body;
+
+    ProjectDb.addProject(newProject)
         .then(project => {
             res.status(201).json(project)
         })
@@ -37,12 +39,13 @@ router.get('/tasks', (req, res) => {
 })
 
 router.post('/:id/tasks', (req, res) => {
-    const task = req.body;
-    task.project_id = req.params.id;
-
-    ProjectDb.addTask()
+    const newTask = req.body;
+    newTask.project_id = req.params.id;
+    
+    console.log(newTask)
+    ProjectDb.addTask(newTask)
         .then(task => {
-            res.status(200).json(task)
+            res.status(201).json(task)
         })
         .catch(error => {
             res.status(500).json(error)
@@ -61,7 +64,9 @@ router.get('/resources', (req, res) => {
 })
 
 router.post('/resources', (req, res) => {
-    ProjectDb.addResource()
+    const newResource = req.body;
+
+    ProjectDb.addResource(newResource)
         .then(resource => {
             res.status(201).json(resource)
         })

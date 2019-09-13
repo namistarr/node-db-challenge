@@ -7,6 +7,8 @@ server.use(express.json());
 
 server.use('/api/projects', ProjectRoutes);
 
-server.use('/', (req, res) => {
+server.get('/', (req, res) => {
     res.send(`Hi from Sleepytown`)
 });
+
+module.exports = server;
